@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Restaurant</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      background: #8e2c2c;
+      padding: 40px;
+    }
+    .container {
+      background: #fff8f0;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #0d0101;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #0d0101;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #0d0101;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .captcha {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+    }
+    .captcha input {
+      width: auto;
+      margin-right: 10px;
+    }
+    button {
+      background: #0d0101;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #8e2c2c;
+    }
+    .confirmation {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+      color: rgb(7, 8, 7);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" required />
+
+      <label for="message">Your Inquiry :</label>
+      <textarea id="message" rows="16" required></textarea>
+
+      <div class="captcha">
+        <input type="checkbox" style="accent-color: #8e2c2c" id="captcha" required />
+        <label for="captcha">I'm not a robot</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="confirmation" id="confirmation">
+      * Your request has been received. A confirmation email has been sent.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      document.getElementById("confirmation").style.display = "block";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
