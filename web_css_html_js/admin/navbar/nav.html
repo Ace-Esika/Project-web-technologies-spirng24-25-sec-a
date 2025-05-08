@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – Ingredients</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #eef2f3;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background-color: rgba(0, 121, 107, 0.7); /* Transparent background */
+        backdrop-filter: blur(10px); /* Blur effect */
+        -webkit-backdrop-filter: blur(10px);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      nav .nav-right {
+        display: flex;
+        align-items: center;
+      }
+
+      nav .nav-links {
+        display: flex;
+        align-items: center;
+      }
+
+      nav .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
+        font-size: 16px;
+        padding: 8px 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .notification {
+        position: relative;
+        margin-left: 20px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .notification .badge {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        background: red;
+        color: white;
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 50%;
+      }
+
+      .dropdown {
+        display: none;
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      .dropdown ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .dropdown ul li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+      }
+
+      .dropdown ul li:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown ul li:hover {
+        background-color: #f1f1f1;
+      }
+
+      .logo a {
+        color: white;
+        text-decoration: none;
+        margin-left: 15px;
+        font-size: 16px;
+        padding: 8px 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><a href="admin.html">Admin Dashboard</a></div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="sell_report.html">Sell Report</a>
+          <a href="#">Orders</a>
+          <a href="kitchen_ticket.html">Kitchen Ticket</a>
+          <a href="inventory.html">Inventory</a>
+          <a href="#">Menu</a>
+          <a href="admin_feedback.html">Feedback</a>
+          <a href="login.html">Logout</a>
+        </div>
+        <div class="notification" id="notification">
+          <i class="fas fa-bell"></i>
+          <span class="badge">1</span>
+          <div class="dropdown" id="dropdown">
+            <ul>
+              <li>New Mail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>

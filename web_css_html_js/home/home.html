@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ichuraku Kitchen</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      
+      
+    }
+
+    .sec{
+        max-width: 700px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 10px;
+        height: 200px;
+        width: 200px;
+      }
+
+    .hero {
+      text-align: center;
+      background-image: url('../img/background_hero.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+
+    footer {
+      background-color: #00796b;
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    footer img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    footer h3 {
+      margin: 10px 0 5px;
+      font-size: 24px;
+    }
+
+    footer p {
+      font-size: 14px;
+      color: #d6f0ea;
+      max-width: 400px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+  height: 100vh;
+  background-image: url('../img/bgm.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+      background-color: #e8f5e9;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center; 
+    }
+.hero .overlay {
+  background-color: rgba(0, 0, 0, 0.6); 
+  color: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero .overlay h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero .overlay p {
+  font-size: 20px;
+}
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      footer img {
+        width: 120px;
+        height: 120px;
+      }
+
+      footer h3 {
+        font-size: 20px;
+      }
+     
+      
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar-container"></div>
+    <script src="home.js"></script>
+
+  <div class="hero">
+    <div class="overlay">
+      <h1>Welcome to Ichuraku Kitchen</h1>
+      <p>Serving authentic flavors and unforgettable dining experiences.</p>
+    </div>
+  </div>
+
+
+  <div class="content" style="background-image: url('../img/watercolor-paper-texture.jpg');
+    background-size: cover;
+    background-position: center;">
+    <h1>Popular Food Items</h1>
+    <div style="display: flex;justify-content: center;">
+      <div class="sec popular_food">
+        <img src="../img/Fresh_beef_burger_isolated_-1-removebg-preview.png" alt="" height="100px" width="100px">
+        <p id="food_name">Cheese Burger</p>
+        <p id="food_price">120 ৳</p>
+      </div>
+
+      <div class="sec popular_food">
+        <img src="../img/crispy-fried-chicken-wooden-cutting-board-removebg-preview.png" alt="" height="100px" width="150px">
+        <p id="food_name">Fried Chiken</p>
+        <p id="food_price">199 ৳</p>
+      </div>
+
+      <div class="sec popular_food">
+        <img src="../img/front-view-delicious-cheese-pizza-consists-olives-pepper-tomatoes-dark-surface-removebg-preview.png" alt="" height="100px" width="150px">
+        <p id="food_name">Veg Pizza</p>
+        <p id="food_price">299 ৳</p>
+      </div>
+      
+    </div>
+    
+    
+  </div>
+
+
+  <footer>
+    <img src="../img/logo.png" alt="Ichuraku Kitchen Logo" />
+    <h3>Ichuraku Kitchen</h3>
+    <p>Serving traditional dishes with a modern twist. Come taste the difference today!</p>
+  </footer>
+</body>
+</html>

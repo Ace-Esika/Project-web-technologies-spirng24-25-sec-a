@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #00796b;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.2); 
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      width: 30%;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 400px;
+    }
+
+    .container input {
+      margin: 10px;
+      padding: 10px;
+      width: 200px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #submit_btn {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #004d40;
+      color: white;
+      cursor: pointer;
+      width: 120px;
+    }
+    #registration_btn{
+      
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #004d40;
+      color: white;
+      cursor: pointer;
+      width: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="../img/logo.png" alt="login logo" height="200px" width="200px" style="border-radius: 50%;">
+    <input type="text" id="user_name" placeholder="User Name">
+    <input type="password" id="user_password" placeholder="Password">
+    <button id="submit_btn" onclick="valid()">Login</button>
+    <button id="registration_btn" onclick="registration()">Registration</button>
+    <h5 id="err" style="color: white;"></h5>
+  </div>
+  <script>
+    function registration(){
+      window.location.href = "registration.html";
+    }
+    function valid(){
+        var user_name  = document.getElementById("user_name") ;
+        var user_pass = document.getElementById("user_password") ;
+
+        if(user_name.value==="root" && user_pass.value==="root"){
+            window.location.href = "home.html";
+        }else if(user_name.value==="admin" && user_pass.value==="admin"){
+          window.location.href ="../admin/admin.html";
+        }
+        else {
+            var ee = document.getElementById("err").innerHTML = "Invalid username or password";
+        }
+    }
+    
+  </script>
+</body>
+</html>
