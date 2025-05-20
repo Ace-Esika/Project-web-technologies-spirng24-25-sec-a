@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: hsl(0, 0%, 96%);
+  }
+
+  header {
+    background-color: hsl(210, 29%, 29%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .dashboard-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .pos-btn {
+    background-color: hsl(204, 70%, 63%);
+    color: white;
+  }
+
+  .pos-btn:hover{
+    background-color: hsl(204, 70%, 53%);
+    color: white;
+  }
+
+  .assign-btn {
+    background-color: hsl(145, 63%, 62%);
+    color: white;
+  }
+
+  .assign-btn:hover{
+    background-color: hsl(145, 63%, 52%);
+    color: white;
+  }
+
+  .profile-btn {
+    background-color: hsl(28, 80%, 62%);
+    color: white;
+  }
+
+  .profile-btn:hover {
+    background-color: hsl(28, 80%, 52%);
+    color: white;
+  }

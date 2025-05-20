@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: hsl(0, 0%, 97%);
+  }
+
+  .container {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  .image-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-half {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .image-half.top {
+    background-image: url('images/floor-plan01.jpg');
+  }
+
+  .image-half.bottom {
+    background-image: url('images/floor-plan02.jpg');
+  }
+
+  .form-section {
+    flex: 1;
+    background-color: hsla(236, 52%, 51%, 0.4);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 5px;
+  }
+
+  .time-slot-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: hsl(204, 70%, 53%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    background-color: hsl(204, 64%, 44%);
+  }
+
+  .confirmation {
+    margin-top: 1rem;
+    color: green;
+    font-weight: bold;
+    text-align: center;
+  }

@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background: hsl(0, 0%, 95%);
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: hsl(122, 39%, 49%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .dashboard-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 100px;
+  }
+
+  .dashboard-buttons button {
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    background-color: hsl(122, 39%, 55%);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .dashboard-buttons button:hover {
+    background-color: hsl(123, 40%, 45%);
+  }
