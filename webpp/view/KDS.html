@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kitchen Ticket</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+    }
+
+    header {
+      background: #00796b;
+      color: white;
+      padding: 15px 30px;
+      font-size: 24px;
+    }
+
+    .ticket-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .ticket {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      padding: 15px;
+      position: relative;
+    }
+
+    .ticket h3 {
+      margin-top: 0;
+      color: #00796b;
+    }
+
+    .item {
+      padding: 5px 0;
+    }
+
+    .modifier {
+      color: #555;
+      margin-left: 10px;
+    }
+
+    .alert {
+      color: red;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .course-time {
+      font-size: 14px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .actions {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn.void {
+      background-color: #d32f2f;
+    }
+
+    .btn.recall {
+      background-color: #fbc02d;
+      color: #333;
+    }
+
+    table.ingredient-table {
+      margin-left: 5px;
+      margin-top: 5px;
+      font-size: 14px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .ingredient-table th,
+    .ingredient-table td {
+      padding: 4px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .ingredient-table td.available {
+      color: green;
+    }
+
+    .ingredient-table td.missing {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+ 
+  <header>Kitchen Display System</header>
+
+  <div class="ticket-container" id="ticketContainer"></div>
+
+  <script>
+    const tickets = [
+      {
+        table: "Table 3",
+        items: [
+          {
+            name: "Grilled Chicken",
+            modifiers: ["Extra spicy"],
+            ingredients: [
+              { name: "Chicken Breast", needed: 1, available: true },
+              { name: "Chili Sauce", needed: 1, available: false }
+            ]
+          },
+          {
+            name: "Salad",
+            modifiers: ["NO NUTS"],
+            allergy: true,
+            ingredients: [
+              { name: "Lettuce", needed: 2, available: true },
+              { name: "Tomato", needed: 1, available: true },
+              { name: "Nuts", needed: 1, available: false }
+            ]
+          }
+        ],
+        courseTime: "10 min"
+      },
+      {
+        table: "Table 7",
+        items: [
+          {
+            name: "Pasta",
+            modifiers: ["No cheese"],
+            ingredients: [
+              { name: "Pasta", needed: 1, available: true },
+              { name: "Cheese", needed: 1, available: false }
+            ]
+          }
+        ],
+        courseTime: "5 min"
+      }
+    ];
+
+    function create_ticket(ticket) {
+      const ticket_div = document.createElement("div");
+      ticket_div.className = "ticket";
+
+      let html = `<h3>${ticket.table}</h3>Kitchen Ticket<div>`;
+
+      ticket.items.forEach(item => {
+        html += `<div class="item">
+          ${item.name}
+          ${item.modifiers.map(mod => `<span class="${item.allergy && mod.includes('NO') ? 'alert' : 'modifier'}">${mod}</span>`).join('')}
+        `;
+
+        if (item.ingredients) {
+          html += `<table class="ingredient-table">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>Needed</th>
+                <th>Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${item.ingredients.map(ing => `
+                <tr>
+                  <td>${ing.name}</td>
+                  <td>${ing.needed}</td>
+                  <td class="${ing.available ? 'available' : 'missing'}">
+                    ${ing.available ? 'Yes' : 'No'}
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>`;
+        }
+
+        html += `</div>`; 
+      });
+
+      html += `</div><div class="course-time">${ticket.courseTime}</div>
+        <div class="actions">
+          <button class="btn void" onclick="req_manager()">Void</button>
+          <button class="btn recall" onclick="alert('Ticket recalled')">Recall</button>
+        </div>`;
+
+      ticket_div.innerHTML = html;
+      return ticket_div;
+    }
+
+    function req_manager() {
+      const approved = confirm("Manager approval required to void. Are you authorized?");
+      if (approved) {
+        alert("Ticket voided.");
+      } else {
+        alert("Access denied.");
+      }
+    }
+
+    const container = document.getElementById("ticketContainer");
+    tickets.forEach(ticket => {
+      container.appendChild(create_ticket(ticket));
+    });
+    
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <style>
+      body {
+        color: rgb(185, 185, 186);
+        background-color: rgb(32, 87, 129);
+        font-family: Arial, sans-serif;
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+      }
+
+      .error_msg {
+        color: rgb(229, 12, 12);
+        font-size: 15px;
+      }
+
+      .container {
+        margin: 3% auto;
+        padding: 20px;
+        background-color: rgb(3, 76, 83);
+        width: 70%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .input_container {
+        display: grid;
+        row-gap: 20px;
+        padding: 20px;
+      }
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input {
+        border: none;
+        border-radius: 5px;
+        height: 30px;
+        width: 400px;
+        padding: 5px 10px;
+      }
+
+      button {
+        border: none;
+        border-radius: 5px;
+        height: 35px;
+        width: 100px;
+        margin: 20px 10px 0 0;
+        background-color: rgb(0, 153, 204);
+        color: white;
+        cursor: pointer;
+      }
+
+      .form_group {
+        display: grid;
+      }
+
+      .row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+    </style>
+
+    <script>
+      function is_contain_number(value) {
+        return /\d/.test(value);
+      }
+
+      function is_valid_email(name) {
+        name = name.trim();
+        var parts = name.split("@");
+        if (parts.length !== 2 || parts[0] === "" || parts[1] === "") {
+          return false;
+        }
+        if (!parts[1].includes(".") || parts[1].endsWith(".")) {
+          return false;
+        }
+        return true;
+      }
+
+      window.onload = function () {
+        var fields = {
+          first_name: "firs_name_error",
+          last_name: "last_name_error",
+          id_: "id_error",
+          email: "email_error",
+          password: "password_error",
+          confirm_password: "confirm_password_err",
+          dob: "dob_error",
+          file_path: "image_error",
+          address: "address_error",
+        };
+
+        var get = (id) => document.getElementById(id);
+
+        get("first_name").addEventListener("input", () =>
+          name_validation("first_name", fields.first_name)
+        );
+        get("last_name").addEventListener("input", () =>
+          name_validation("last_name", fields.last_name)
+        );
+        get("id_").addEventListener("input", () =>
+          is_empty("id_", fields.id_)
+        );
+        get("email").addEventListener("input", () =>
+          email_validation("email", fields.email)
+        );
+        get("password").addEventListener("input", () =>
+          pass_validation("password", fields.password)
+        );
+        get("confirm_password").addEventListener(
+          "input",
+          match_pass
+        );
+        get("dob").addEventListener("change", () =>
+          is_empty("dob", fields.dob)
+        );
+        get("file_path").addEventListener("change", validateFile);
+        get("address").addEventListener("input", () =>
+          is_empty("address", fields.address)
+        );
+      };
+
+      function name_validation(id, errorId) {
+        var value = document.getElementById(id).value.trim();
+        var msg = document.getElementById(errorId);
+        if (value === "") {
+          msg.innerText = "This field cannot be empty.";
+        } else if (is_contain_number(value)) {
+          msg.innerText = "Name cannot contain numbers.";
+        } else {
+          msg.innerText = "";
+        }
+      }
+
+      function is_empty(id, errorId) {
+        var value = document.getElementById(id).value.trim();
+        var msg = document.getElementById(errorId);
+        if (value === "") {
+          msg.innerText = "This field cannot be empty.";
+        } else {
+          msg.innerText = "";
+        }
+      }
+
+      function email_validation(id, errorId) {
+        var value = document.getElementById(id).value.trim();
+        var msg = document.getElementById(errorId);
+        if (value === "") msg.innerText = "Email cannot be empty.";
+        else if (!is_valid_email(value))
+          msg.innerText = "Invalid email format.";
+        else msg.innerText = "";
+      }
+
+      function pass_validation(id, errorId) {
+        var value = document.getElementById(id).value;
+        var msg = document.getElementById(errorId);
+        msg.innerText =
+          value.length < 6 ? "Password must be at least 6 characters." : "";
+      }
+
+      function match_pass() {
+        var password = document.getElementById("password").value;
+        var confirm = document.getElementById("confirm_password").value;
+        var msg = document.getElementById("confirm_password_err");
+        msg.innerText = password !== confirm ? "Passwords do not match." : "";
+      }
+
+      function validateFile() {
+        var file = document.getElementById("file_path");
+        var msg = document.getElementById("image_error");
+        msg.innerText =
+          file.files.length === 0 ? "Please upload an image." : "";
+      }
+
+      function validation() {
+        name_validation("first_name", "firs_name_error");
+        name_validation("last_name", "last_name_error");
+        is_empty("id_", "id_error");
+        email_validation("email", "email_error");
+        pass_validation("password", "password_error");
+        match_pass();
+        is_empty("dob", "dob_error");
+        validateFile();
+        is_empty("address", "address_error");
+
+        var errors = document.getElementsByClassName("error_msg");
+        for (let i = 0; i < errors.length; i++) {
+          if (errors[i].innerText !== "") return false;
+        }
+        return true;
+      }
+
+      function ok() {
+        if (validation()) {
+          window.location.href = "login.html";
+        } else {
+          alert("Please Complete the Registration !!");
+        }
+      }
+
+      function reset() {
+        document.getElementById("form").reset();
+        var errors = document.getElementsByClassName("error_msg");
+        for (let i = 0; i < errors.length; i++) {
+          errors[i].innerText = "";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    
+    <div class="container">
+      <div class="header">
+        <h1>Sign Up</h1>
+      </div>
+      <form id="form" class="input_container">
+        <div class="row">
+          <div class="form_group" style="flex: 1">
+            <label>First Name</label>
+            <input type="text" id="first_name" placeholder="First Name" />
+            <label class="error_msg" id="firs_name_error"></label>
+          </div>
+
+          <div class="form_group" style="flex: 1">
+            <label>Last Name</label>
+            <input type="text" id="last_name" placeholder="Last Name" />
+            <label class="error_msg" id="last_name_error"></label>
+          </div>
+        </div>
+
+        <div class="form_group">
+          <label>ID</label>
+          <input type="text" id="id_" placeholder="ID" />
+          <label class="error_msg" id="id_error"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="example@example.com" />
+          <label class="error_msg" id="email_error"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Password" />
+          <label class="error_msg" id="password_error"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            id="confirm_password"
+            placeholder="Re-enter Password"
+          />
+          <label class="error_msg" id="confirm_password_err"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Date of Birth</label>
+          <input type="date" id="dob" />
+          <label class="error_msg" id="dob_error"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Upload Image</label>
+          <input type="file" id="file_path" accept="image/*" />
+          <label class="error_msg" id="image_error"></label>
+        </div>
+
+        <div class="form_group">
+          <label>Address</label>
+          <input type="text" id="address" placeholder="Your Address" />
+          <label class="error_msg" id="address_error"></label>
+        </div>
+
+        <div style="margin-top: 20px">
+          <button type="button" onclick="ok()">Submit</button>
+          <button type="button" onclick="reset()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
