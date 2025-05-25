@@ -110,10 +110,10 @@
 </head>
 <body>
  
-  <header>Kitchen Display System</header>
 
-  <div class="ticket-container" id="ticketContainer"></div>
-
+     <header>Kitchen Display System</header>
+  <div class="ticket-container" id="ticketContainer" style="margin-top : 80px"></div>
+    
   <script>
     const tickets = [
       {

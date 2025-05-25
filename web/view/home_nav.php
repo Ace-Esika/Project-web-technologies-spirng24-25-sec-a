@@ -1,6 +1,5 @@
 <?php 
     session_start();
-  
 ?>
     <style>
       body {
@@ -120,27 +119,26 @@
       <div class="nav-right">
         <div class="nav-links">
           <a href="index.php">Home</a>
-          <?php if ($is_logged_in) {
+          <?php if ($is_logged_in) { 
             echo " <a href='#'>Menu</a>";  
-             
             }else{
                echo "<a href='view/user_login.php'>Menu</a>";
             }
             ?>
-          <?php if ($is_logged_in) {
-            echo " <a href='#'>Order</a>";  
-             
+         
+          <?php if ($is_logged_in) { 
+            echo " <a href='#'>Order Track</a>";  
             }else{
-               echo "<a href='view/user_login.php'>Order</a>";
+               echo "<a href='view/user_login.php'>Order Track</a>";
             }
             ?>
-          <?php if ($is_logged_in) {
+          <?php if ($is_logged_in) { 
             echo " <a href='#'>Table</a>";  
-             
             }else{
                echo "<a href='view/user_login.php'>Table</a>";
             }
-            ?>          <a href="view/contact_us.html">Contuct us</a>
+            ?>
+          <a href="view/contact_us.html">Contuct us</a>
           <?php 
           if ($is_logged_in) {
             //echo '<a href="user_profile.php">HI ' . htmlspecialchars($user_name) . '</a>';

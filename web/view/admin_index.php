@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard – Ingredients</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -206,7 +202,8 @@
     
   </body>
   <script>
-    const ctx = document.getElementById('activityChart').getContext('2d');
+    
+  const ctx = document.getElementById('activityChart').getContext('2d');
 
 const activityChart = new Chart(ctx, {
   type: 'line',

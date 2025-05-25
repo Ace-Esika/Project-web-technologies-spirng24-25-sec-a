@@ -19,8 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['is_admin_logged_in'] = true;
         header("Location: ../view/admin_index.php");
         exit();
-        
-    } else {
+    } elseif ($user_name === "chef" && $user_pass === "chef") {
+        $_SESSION['user_name'] = $user_name;
+        $_SESSION['is_logged_in'] = true;
+        header("Location: ../view/KDS.php");
+        exit();
+    }
+    
+    else {
         if (empty($user_name) || empty($user_pass)) {
             $error_msg = "Please fill in all fields";
         } else {
