@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusE'])){
 ?>
 
 <!DOCTYPE html>

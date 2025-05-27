@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusE'])){
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="employeeDashboard.css">
 </head>
 <body>
-  <h1>Employee Dashboard</h1>
+  <h1>Employee Shift Management </h1>
 
   <section>
     <h2>Clock In / Clock Out</h2>

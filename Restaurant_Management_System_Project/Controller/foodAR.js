@@ -19,6 +19,6 @@ function validate(){
     alert("Please select a dietary tag");
     return false;
   }
-  document.getElementById("div4").innerHTML = `Food Name: ${itemName} <br> Price: $${itemPrice} <br> Dietary Tag: ${tag}`;
-  return false;
+  // document.getElementById("div4").innerHTML = `Food Name: ${itemName} <br> Price: $${itemPrice} <br> Dietary Tag: ${tag}`;
+  return true;
 }

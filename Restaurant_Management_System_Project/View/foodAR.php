@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusA'])){
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +16,17 @@
 
   <div class="container">
     <h2>Add New Menu Item</h2>
-    <form id="menuForm" onsubmit="return validate()">
+    <form id="menuForm" method="post" action="../Model/foodAdd.php" onsubmit="return validate()">
       <input type="file" id="itemImage">
-      <input type="text" id="itemName" placeholder="Item Name">
-      <input type="text" id="itemPrice" placeholder="Price">
-      <select id="itemTag">
+      <input type="text" name="itemName" id="itemName" placeholder="Item Name">
+      <input type="text" name="itemPrice" id="itemPrice" placeholder="Price">
+      <select name="category" id="itemTag">
         <option value="">Select Dietary Tag</option>
         <option value="vegan">Vegan</option>
         <option value="gluten-free">Gluten-Free</option>
       </select>
       <input type="submit" value="Add Item" id="submit">
+    </form>
 
     <div class="menu-list" id="menuList">
       <h2>Current Menu</h2>

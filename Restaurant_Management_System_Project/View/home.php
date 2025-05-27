@@ -24,29 +24,5 @@
     </div>
   </header>
 
-  <section class="features">
-    <h2>Why Choose Us?</h2>
-    <div class="feature-boxes">
-      <div class="feature">
-        <h3>📦 Easy Order Management</h3>
-        <p>Handle orders with just a few clicks. Track progress in real-time.</p>
-      </div>
-      <div class="feature">
-        <h3>📊 Sales Reports</h3>
-        <p>Analyze daily, weekly, or monthly performance with detailed insights.</p>
-      </div>
-      <div class="feature">
-        <h3>👥 Staff Access Control</h3>
-        <p>Set permissions and monitor activities for staff and kitchen roles.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <h2>Ready to Take Control?</h2>
-    <p>Join now and transform the way your restaurant operates.</p>
-    <!-- <a href="login.php" class="btn">Login to Dashboard</a> -->
-  </section>
-
 </body>
 </html>

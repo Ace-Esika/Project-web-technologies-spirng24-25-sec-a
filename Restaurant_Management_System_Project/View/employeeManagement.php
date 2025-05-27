@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusA'])){
 ?>
 
 <!DOCTYPE html>
@@ -8,12 +8,12 @@
 <head>
   <title>Employee Management</title>
   <link rel="stylesheet" href="employeeManagement.css">
-  <script src="../Controller/employeeManagement.js"></script>
 </head>
 <body>
   <h1>Employee Management</h1>
 
   <div class="btn-group">
+    <button class="btn" onclick="previousPage()">Back</button>
     <button class="btn" onclick="edit()">Edit</button>
     <button class="btn" onclick="saveChanges()" id="saveBtn" disabled>Save Changes</button>
   </div>
@@ -102,6 +102,7 @@
         </tr>
       </tbody>
     </table>
+    <script src="../Controller/employeeManagement.js"></script>
 </body>
 </html>
 

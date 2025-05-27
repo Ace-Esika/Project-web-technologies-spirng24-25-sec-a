@@ -1,3 +1,4 @@
+
 function validate(){
 
     document.getElementById("table").style.display = "block";
@@ -29,11 +30,6 @@ function validate(){
             document.getElementById("table").innerHTML = "Last Name can't contain numbers";
             return false;
         }
-    }
-
-    if(username == "user"){
-            document.getElementById("table").innerHTML = "This username is already taken.";
-            return false;
     }
 
     let index1 = email.lastIndexOf("@");
@@ -83,7 +79,6 @@ function validate(){
     }
 
     if(true){
-        alert("You have registered successfully.")
         return true;
     }
 

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusE'])){
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <h1>Server Dashboard</h1>
+    <h1>Employee Dashboard</h1>
   </header>
 
   <div class="container">

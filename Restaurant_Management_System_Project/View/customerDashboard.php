@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <header>Dashboard</header>
+  <header>Customer Dashboard</header>
 
   <div class="dashboard-buttons">
     <button onclick="location.href='profile.php'">Profile</button>
