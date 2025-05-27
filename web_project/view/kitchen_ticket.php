@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - Approvals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      padding: 0;
+      margin: 0;
+    }
+
+    .approval-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .ticket-request {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .approve {
+      background-color: #388e3c;
+    }
+
+    .reject {
+      background-color: #d32f2f;
+    }
+
+    .show {
+      background-color: #0288d1;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #chefModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    #chefModal .modal-content {
+      background: #fff8f0;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: 5% auto;
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    #chefModal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    #chefModal h2 {
+      color: #8e2c2c;
+    }
+
+    #chefModal table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    #chefModal th, #chefModal td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    #chefModal th {
+      background: #00796b;
+      color: white;
+    }
+
+    .ok {
+      color: green;
+    }
+
+    .not-ok {
+      color: red;
+    }
+
+    
+
+    #finish_btn {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #finish_btn:disabled {
+      background: gray;
+    }
+  </style>
+</head>
+<body>
+  <?php include 'admin_nav.php'; ?>
+
+  <div style="margin-top: 90px;" class="approval-container" id="approvalContainer"></div>
+
+  <div id="chefModal">
+    <div class="modal-content">
+      <span class="close" onclick="close_chef()">&times;</span>
+      <h2>🍽️ Current Order</h2>
+      <p><strong>Menu:</strong> <span id="menu_id">-</span> × <span id="qty">-</span></p>
+      <div class="note" id="kitchenTicket">
+        <strong></strong> <span id="noteText">-</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Ingredient</th>
+            <th>Needed</th>
+            <th>Available</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="ingredient_table"></tbody>
+      </table>
+      <button id="finish_btn" disabled onclick="finish_order()">✅ Finish Order</button>
+    </div>
+  </div>
+
+  <script>
+    const ticket_request = [
+      {
+        id: 1,
+        table: "Table 5",
+        reason: "Void requested for incorrect item",
+        type: "Void",
+        status: "Pending",
+        details: ["1x Burger", "1x Fries", "1x Coke"]
+      },
+      {
+        id: 2,
+        table: "Table 2",
+        reason: "Recall requested due to delay",
+        type: "Recall",
+        status: "Pending",
+        details: ["2x Pizza", "1x Water Bottle"]
+      }
+    ];
+
+    const chefOrder = {
+      menu_item: "Cheese Burger",
+      quantity: 2,
+      ingredients: [
+        { name: "Cheese", needed: 2, stock: 5, enough: true },
+        { name: "Burger Bun", needed: 2, stock: 10, enough: true },
+        { name: "Lettuce", needed: 1, stock: 0, enough: false },
+        { name: "Tomato", needed: 1, stock: 3, enough: true }
+      ]
+    };
+
+    function render_req() {
+      const container = document.getElementById("approvalContainer");
+      container.innerHTML = "";
+
+      ticket_request.forEach(req => {
+        const div = document.createElement("div");
+        div.className = "ticket-request";
+        div.innerHTML = `
+          <h3>${req.type} Request - ${req.table}</h3>
+          <p><strong>Reason:</strong> ${req.reason}</p>
+          <div class="actions">
+            <button class="btn approve" onclick="update(${req.id}, 'Approved')">Approve</button>
+            <button class="btn reject" onclick="update(${req.id}, 'Rejected')">Reject</button>
+            <button class="btn show" onclick="show_order()">Show Order</button>
+          </div>
+          <div class="status" id="status-${req.id}">Status: ${req.status}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function update(id, status) {
+      const request = ticket_request.find(r => r.id === id);
+      if (request) {
+        request.status = status;
+        document.getElementById(`status-${id}`).textContent = "Status: " + status;
+      }
+    }
+
+    function show_order() {
+      document.getElementById("menu_id").textContent = chefOrder.menu_item;
+      document.getElementById("qty").textContent = chefOrder.quantity;
+      document.getElementById("noteText").textContent = chefOrder.note;
+
+      const table = document.getElementById("ingredient_table");
+      table.innerHTML = "";
+
+      let allGood = true;
+      chefOrder.ingredients.forEach(ing => {
+        const statusClass = ing.enough ? 'ok' : 'not-ok';
+        if (!ing.enough) allGood = false;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${ing.name}</td>
+          <td>${ing.needed}</td>
+          <td>${ing.stock}</td>
+          <td class="${statusClass}">${ing.enough ? "✅ OK" : "❌ Not enough"}</td>
+        `;
+        table.appendChild(row);
+      });
+
+      document.getElementById("finish_btn").disabled = !allGood;
+      document.getElementById("chefModal").style.display = "block";
+    }
+
+    function close_chef() {
+      document.getElementById("chefModal").style.display = "none";
+    }
+
+    function finish_order() {
+      alert("Order has been marked as completed!");
+      close_chef();
+    }
+
+    render_req();
+  </script>
+</body>
+</html>
