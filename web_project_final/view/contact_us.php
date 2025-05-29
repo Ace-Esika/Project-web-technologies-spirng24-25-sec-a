@@ -1,0 +1,146 @@
+<?php include '../controller/contact_us_control.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #00796b;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .contact-container {
+      background: rgba(255, 255, 255, 0.2); 
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 10px;
+      width: 400px;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+
+    .btn {
+      background-color: #0099cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #007ba0;
+    }
+  </style>
+</head>
+<body>
+<form action="../controller/contact_us_control.php" method="post">
+<div class="contact-container">
+  <h2>Contact Us</h2>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name"/>
+    <div id="name_error" class="error"></div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email"/>
+    <div id="email_error" class="error"></div>
+  </div>
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="msg"></textarea>
+    <div id="message_error" class="error"></div>
+  </div>
+  <div class="g-recaptcha" data-sitekey="6LfSnBwrAAAAAFjbyihY2yoaFDo2onbvKdyEFQ2b"></div>
+  <input class="btn" type="submit" value="Submit"></input>
+</div>
+</form>
+<script>
+   window.onload = function () {
+    const get = (id) => document.getElementById(id);
+
+    // Validation functions
+    function validateName() {
+      const name = get("name").value.trim();
+      const error = get("name_error");
+      if (name === "") {
+        error.textContent = "Name is required.";
+      } else {
+        error.textContent = "";
+      }
+    }
+
+    function validateEmail() {
+      const email = get("email").value.trim();
+      const error = get("email_error");
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "") {
+        error.textContent = "Email is required.";
+      } else if (!emailPattern.test(email)) {
+        error.textContent = "Please enter a valid email address.";
+      } else {
+        error.textContent = "";
+      }
+    }
+
+    function validateMessage() {
+      const message = get("message").value.trim();
+      const error = get("message_error");
+      if (message === "") {
+        error.textContent = "Message is required.";
+      } else {
+        error.textContent = "";
+      }
+    }
+
+    // Attach onchange events
+    get("name").addEventListener("change", validateName);
+    get("email").addEventListener("change", validateEmail);
+    get("message").addEventListener("change", validateMessage);
+  }
+</script>
+
+</body>
+</html>
