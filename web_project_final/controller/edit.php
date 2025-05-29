@@ -88,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <select name="role">
             <option value="admin" <?php if($row['role']=='admin') echo 'selected'; ?>>Admin</option>
             <option value="user" <?php if($row['role']=='user') echo 'selected'; ?>>User</option>
+            <option value="chef" <?php if($row['role']=='chef') echo 'selected'; ?>>chef</option>
+
           </select>
           <input type="submit" name="update" value="Update">
         </form>

@@ -150,7 +150,7 @@ function fetchInventory() {
         id: item.id,
         name: item.name,
         quantity: parseInt(item.quantity),
-        parLevel: 5 // set default or pull from DB if stored
+        parLevel: 5 
       }));
       update_stock();
     });
