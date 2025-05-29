@@ -41,13 +41,19 @@ function processPayment(){
   grandTotal = totalBill + (totalBill*tip);
 
   if(nog == 1){
-  document.getElementById("receipt").innerHTML = `Table No: ${tableNo} <br> Food Items: ${foodItems} <br> Total Bill: $${totalBill} <br> Tip: 10% <br> Grand Total: $${grandTotal} <br> Payment by: ${payMethod} <br> No split payment`;
+  document.getElementById("receipt").innerHTML = `Table No: ${tableNo} <br> Food Items: ${foodItems} <br> Total Bill: BDT${totalBill} <br> Tip: 10% <br> Grand Total: BDT${grandTotal} <br> Payment by: ${payMethod} <br> No split payment`;
   return false;
   }
   else{
-    document.getElementById("receipt").innerHTML = `Table No: ${tableNo} <br> Food Items: ${foodItems} <br> Total Bill: $${totalBill} <br> Tip: 10% <br> Grand Total: $${grandTotal} <br> Split bill(per person): $${Math.floor(grandTotal)/nog}`;
+    document.getElementById("receipt").innerHTML = `Table No: ${tableNo} <br> Food Items: ${foodItems} <br> Total Bill: BDT${totalBill} <br> Tip: 10% <br> Grand Total: BDT${grandTotal} <br> Split bill(per person): $${Math.floor(grandTotal)/nog}`;
     return false;
   }
-  
+
   
 }
+
+  function printReceipt(){
+    alert("Your receipt is printing.");
+    window.location.href = 'posTerminal.php';
+  }
+  

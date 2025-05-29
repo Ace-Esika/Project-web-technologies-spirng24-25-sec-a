@@ -1,74 +1,80 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  $_SESSION['reservation'] = true;
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reservation</title>
-    <link rel="stylesheet" href="reservation.css">
+  <title>Reserve a Table - Grillzilla</title>
+  <link rel="stylesheet" href="reservation.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="image-section">
-      <div class="image-half top"></div>
-      <div class="image-half bottom"></div>
-    </div>
-    <div class="form-section">
-      <h2>Book a Reservation</h2>
-      <form id="reservationForm" onsubmit="return submitReservation()">
-        <div class="form-group">
-          <label for="date">Date</label>
-          <input type="date" id="date">
-        </div>
+  <button class="back-button" onclick="window.location.href='customerDashboard.php'">Back</button>
 
-        <div class="form-group">
-          <label for="timeFrom">Time Slot</label>
-          <div class="time-slot-container">
-            <input type="time" id="timeFrom">
-            <span>to</span>
-            <input type="time" id="timeTo">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="partySize">Party Size</label>
-          <input type="text" id="partySize" min="0">
-        </div>
-
-        <div class="form-group">
+  <div class="reservation-hero">
+    <div class="overlay">
+      <div class="form-container">
+        <h1>Reserve a Table</h1>
+        <form action="../Controller/reservationProcess.php" method="post" onsubmit="return validate()">
           <label for="name">Name</label>
-          <input type="text" id="name">
-        </div>
+          <input type="text" id="name" name="name">
 
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" id="phone">
-        </div>
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date">
 
-        <div class="form-group">
+          <label for="start-time">Start Time</label>
+          <div class="time-slot-group">
+            <select name="start_hour">
+              <?php for ($i = 1; $i <= 12; $i++) { echo "<option>$i</option>"; } ?>
+            </select>
+            <select name="start_minute">
+              <option>00</option>
+              <option>15</option>
+              <option>30</option>
+              <option>45</option>
+            </select>
+            <select name="start_ampm">
+              <option>AM</option>
+              <option>PM</option>
+            </select>
+          </div>
+
+          <label for="end-time">End Time</label>
+          <div class="time-slot-group">
+            <select name="end_hour">
+              <?php for ($i = 1; $i <= 12; $i++) { echo "<option>$i</option>"; } ?>
+            </select>
+            <select name="end_minute">
+              <option>00</option>
+              <option>15</option>
+              <option>30</option>
+              <option>45</option>
+            </select>
+            <select name="end_ampm">
+              <option>AM</option>
+              <option>PM</option>
+            </select>
+          </div>
+
+          <label for="party_size">Party Size</label>
+          <input type="number" id="party_size" name="party_size" min="1">
+
           <label for="email">Email</label>
-          <input type="text" id="email">
-        </div>
+          <input type="email" id="email" name="email">
 
-        <div class="form-group">
-          <label for="specialRequest">Special Request</label>
-          <textarea id="specialRequest" rows="3"></textarea>
-        </div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone">
 
-        <button type="submit">Book Reservation</button>
-        <div class="confirmation" id="confirmationMessage"></div>
-      </form>
+          <label for="special_request">Special Request</label>
+          <textarea name="special_request" rows="3"></textarea>
+
+          <input type="submit" value = "Submit Reservation">
+        </form>
+      </div>
     </div>
   </div>
   <script src="../Controller/reservation.js"></script>
+
 </body>
 </html>
-
-<?php
-  }else{
-    header("location: home.php");
-  }
-
-?>

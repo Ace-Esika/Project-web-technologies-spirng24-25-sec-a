@@ -12,25 +12,31 @@
             exit;
         }
         else{
-            require_once('../Model/db.php');
-        
-            $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-            $result = mysqli_query($con, $sql);
+            require_once('../Model/usersModel.php');
+            
+            $result = loginCheck($username, $password);
 
             $row = mysqli_fetch_assoc($result);
+
             if (mysqli_num_rows($result) > 0) {
                 if($row['role'] == 'customer'){
                     $_SESSION['status'] = true;
+                    setcookie('status','true',time()+3600, '/');
+                    $_SESSION['username'] = $username;
                     header("location: ../View/CustomerDashboard.php");
                     exit;
                 }
                 else if($row['role'] == 'employee'){
                     $_SESSION['statusE'] = true;
-                    header("location: ../View/server.php");
+                    setcookie('statusE','true',time()+3600, '/');
+                    $_SESSION['username'] = $username;
+                    header("location: ../View/employeeDashboard.php");
                     exit;
                 }
                 else if($row['role'] == 'admin'){
+                    $_SESSION['username'] = $username;
                     $_SESSION['statusA'] = true;
+                    setcookie('statusA','true',time()+3600, '/');
                     header("location: ../View/adminDashboard.php");
                     exit;
                 }

@@ -70,58 +70,14 @@
               <td colspan="2"><div id="table"></div></td>
             </tr>
             <tr style="text-align: center;">
-                <td colspan="2"><a href="login.html" style="color: blue;">Already have an account? Login here</a></td>
+                <td colspan="2"><a href="login.php" style="color: blue;">Already have an account? Login here</a></td>
             </tr>
         </table>
       </form>
     </div>
   </div>
-  <script>
-    let usernameAvailable = false;
-
-    document.getElementById('username').addEventListener('blur', function() {
-    let username = document.getElementById("username").value.trim();
-
-    if(username == ""){
-        document.getElementById('table1').innerHTML = "";
-        usernameAvailable = false;
-        return;
-    }
-
-    let json = {
-        'username': username
-    };
-    let data = JSON.stringify(json);
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.open('post', '../Controller/usernameCheck.php', true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send('json=' + data);
-
-    xhttp.onreadystatechange = function () {
-        if(this.readyState == 4 && this.status == 200){
-            let response = this.responseText.trim();
-
-            if(response == "taken"){
-                document.getElementById('table1').style.color = "red";
-                document.getElementById('table1').innerHTML = "Username already taken.";
-                usernameAvailable = false;
-            } 
-            else if(response == "available"){
-                document.getElementById('table1').style.color = "green";
-                document.getElementById('table1').innerHTML = "Username is available!";
-                usernameAvailable = true;
-            } 
-            else {
-                document.getElementById('table1').style.color = "orange";
-                document.getElementById('table1').innerHTML = "Error checking username.";
-                usernameAvailable = false;
-            }
-        }
-    }
-});
-  </script>
   <script src="../Controller/signup.js"></script>
+  <script src="usernameAjax.js"></script>
 </body>
 </html>
 <?php

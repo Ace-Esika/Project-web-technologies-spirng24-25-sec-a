@@ -1,20 +1,19 @@
-<?php
-  session_start();
-  $_SESSION['login'] = true;
-?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="login.css">
-  <title>Login Page</title>
+<link rel="stylesheet" href="login.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<title>Login Page</title>
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <div class="image-half"></div>
     <div class="text-half">
-      <h1>Login</h1>
-      <form action="../Controller/loginCheck.php" method = 'post' onsubmit="return validate()">
+    <h1>Login</h1>
+    <form action="../Controller/loginCheck.php" method = 'post' onsubmit="return validate()">
         <table>
             <tr>
                 <td><label for="username">Username</label></td>
@@ -27,7 +26,7 @@
             <tr></tr>
             <tr></tr>
             <tr>
-              <td colspan="2" id="table"></td>
+            <td colspan="2" id="table"></td>
             </tr>
             <tr>
                 <td><a href="forgetPassword.php" style="color: red;">Forget Password</a></td>
@@ -37,9 +36,11 @@
                 <td colspan="2"><a href="signup.php" style="color: blue; font-weight: bold;">Create a new account</a></td>
             </tr>
         </table>
-      </form>
-      <script src="../Controller/login.js"></script>
+    </form>
+    <script src="../Controller/login.js"></script>
     </div>
-  </div>
+</div>
 </body>
 </html>
+    
+

@@ -1,100 +1,113 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  body, html {
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, hsl(269, 85%, 43%), hsl(218, 97%, 57%));
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  .container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-  }
+.container {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.15);
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+}
 
-  .image-half {
-    flex: 1;
-    background-image: url('images/pexels-mat-brown-150387-1395967.jpg');
-    background-size: cover;
-    background-position: center;
-  }
+header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  color: hsl(0, 0%, 20%);
+}
 
-  .text-half {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: hsla(201, 100%, 50%, 0.429);
-    padding: 2rem;
-    overflow-y: auto;
-  }
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 6px 14px;
+  background-color: hsl(0, 0%, 40%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
 
-  h1, h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
-  }
+.back-button:hover {
+  background-color: hsl(0, 0%, 20%);
+}
 
-  form {
-    width: 100%;
-    max-width: 500px;
-  }
+form .field {
+  margin-bottom: 20px;
+}
 
-  .info {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-  }
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
 
-  .info label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+.field input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 8px;
+}
 
-  .info input {
-    padding: 8px;
-    border: 1px solid hsl(0, 0%, 80%);
-    border-radius: 5px;
-    font-size: 14px;
-  }
+.field input:disabled {
+  background-color: #f2f2f2;
+}
 
-  .info input:disabled {
-    background-color: hsl(0, 0%, 90%);
-  }
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
+.buttons button {
+  width: 48%;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: hsl(190, 54%, 59%);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+#editBtn {
+  background-color: #999;
+  color: white;
+}
 
-  button:hover {
-    background-color: hsl(190, 54%, 39%);
-  }
+#editBtn:hover {
+  background-color: #666;
+}
 
-  #profileImagePreview {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid hsl(0, 0%, 100%);
-  }
+input[type='submit'] {
+  background-color: hsl(218, 97%, 57%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px; 
+  cursor: pointer;
+}
 
-  #passwordSection input {
-    background-color: hsl(0, 0%, 98%);
-  }
+input[type='submit']:hover {
+  background-color: hsl(220, 79%, 49%);
+}
+
+input[type='password'] {
+    display: none;
+}

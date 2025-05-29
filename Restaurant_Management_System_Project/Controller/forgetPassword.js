@@ -20,7 +20,7 @@ function validate(){
     }
     else{
         document.getElementById("info").style.display = "block";
-        return false;
+        return true;
         
     }
 

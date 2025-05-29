@@ -1,8 +1,15 @@
-
 <?php
-  session_start();
-  if(isset($_SESSION['status'])){
+session_start();
+if (!isset($_SESSION['status'])) {
+  header("location: home.php");
+  exit;
+}
+
+require_once('../Model/foodModel.php');
+
+$result = foodView();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,51 +17,32 @@
   <link rel="stylesheet" href="foodItem.css">
 </head>
 <body>
-  <header>
-    <h1>Our Menu</h1>
-  </header>
 
-  <div class="filter-section">
-    <select id="filter" onchange="filterMenu()">
-      <option value="all">All</option>
-      <option value="vegan">Vegan</option>
-      <option value="gluten-free">Gluten-Free</option>
-    </select>
-  </div>
+<header>
+  <button onclick="window.location.href='customerDashboard.php'" class="back-btn">← Back</button>
+  <h1>Our Menu</h1>
+</header>
 
-  <div class="menu-grid" id="menu">
-    <div class="food-item" data-tag="vegan">
-      <img src="images/salad.webp" alt="Salad">
-      <div class="food-name">Fresh Salad</div>
-    </div>
-    <div class="food-item" data-tag="gluten-free">
-      <img src="images/grilled-chicken.jpg" alt="Grilled Chicken">
-      <div class="food-name">Grilled Chicken</div>
-    </div>
-    <div class="food-item" data-tag="vegan">
-      <img src="images/burger.jpg" alt="Burger">
-      <div class="food-name">Vegan Burger</div>
-    </div>
-    <div class="food-item" data-tag="gluten-free">
-      <img src="images/tuna-steak.jpg" alt="tuna-Steak">
-      <div class="food-name"> Tuna Steak</div>
-    </div>
-    <div class="food-item" data-tag="all">
-      <img src="images/pizza.jpg" alt="Pizza">
-      <div class="food-name">Pizza</div>
-    </div>
-    <div class="food-item" data-tag="gluten-free">
-        <img src="images/chicken-burger.avif" alt="chicker burger">
-        <div class="food-name">Chicken Burger</div>
-      </div>
-  </div>
-  <script src="../Controller/foodItem.js"></script>
+<!-- <div class="filter-section">
+  <select id="filter" onchange="filterMenu()">
+    <option value="all">All</option>
+    <option value="Vegan">Vegan</option>
+    <option value="Non-vegan">Gluten-Free</option>
+  </select>
+</div> -->
+
+<div class="menu-grid" id="menu">
+  <?php while($row = mysqli_fetch_assoc($result)) { ?>
+    <form action="foodDetails.php" method="get">
+      <button type="submit" name="id" value="<?php echo $row['id']; ?>" class="food-item">
+        <img src="<?php echo 'images/'.$row['picture']; ?>" alt="<?php echo $row['name']; ?>">
+        <div class="food-name"><?php echo $row['name']; ?></div>
+      </button>
+    </form>
+  <?php } ?>
+</div>
+
+<script src="../Controller/foodItem.js"></script>
+
 </body>
 </html>
-
-<?php
-  }else{
-    header("location: home.php");
-  }
-
-?>

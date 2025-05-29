@@ -7,7 +7,7 @@
 <html>
 <head>
   <title>POS Payment Processing</title>
-  <link rel="stylesheet" href="payment.css">
+  <link rel="stylesheet" href="posTerminal.css">
 </head>
 <body>
   <div class="container">
@@ -19,12 +19,12 @@
     </div>
 
     <div class="form-group">
-      <label for="foodItems">Food Items Ordered (Format: Name - $Price x Quantity)</label>
-      <textarea id="foodItems" rows="5" placeholder="e.g., Pizza - $30 x2"></textarea>
+      <label for="foodItems">Food Items Ordered (Format: Name - BDT Price x Quantity)</label>
+      <textarea id="foodItems" rows="5" placeholder="e.g., Pizza - BDT 30 x2"></textarea>
     </div>
 
     <div class="form-group">
-      <label for="totalBill">Total Bill Amount ($)</label>
+      <label for="totalBill">Total Bill Amount (BDT)</label>
       <input type="text" id="totalBill" />
     </div>
 
@@ -48,7 +48,7 @@
 
     <div id="receipt"></div>
   </div>
-  <script src="../Controller/payment.js"></script>
+  <script src="posTerminal.js"></script>
 </body>
 </html>
 

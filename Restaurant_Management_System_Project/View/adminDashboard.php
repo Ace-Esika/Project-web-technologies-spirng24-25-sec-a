@@ -1,27 +1,36 @@
 <?php
   session_start();
-  if(isset($_SESSION['status'])){
+  if(isset($_SESSION['statusA'])){
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="adminDashboard.css">
+  <meta charset="UTF-8">
+  <title>Customer Dashboard</title>
+  <link rel="stylesheet" href="customerDashboard.css">
 </head>
 <body>
-  <header>Admin Dashboard</header>
 
-  <div class="dashboard">
-    <button onclick="location.href='employeeManagement.php'">Employee Management</button>
-    <button onclick="location.href='foodAR.php'">Food Add/Remove</button>
+  <div class="container">
+    <header>Admin Dashboard</header>
+
+    <div class="dashboard-buttons">
+      <!-- <button onclick="location.href='employeeManagement.php'">
+        <span>👤</span> Employee
+      </button> -->
+      <button onclick="location.href='foodManagement.php'">
+        <span>🍽️</span> Food Item
+      </button>
+      <button onclick="location.href='reservationManagement.php'">
+        <span>📅</span> Reservation
+      </button>
+    </div>
   </div>
-  <script src="../Controller/adminDashbaord.js"></script>
+
 </body>
 </html>
-
 <?php
-  }else{
+  } else {
     header("location: home.php");
   }
-
 ?>

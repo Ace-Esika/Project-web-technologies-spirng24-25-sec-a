@@ -1,0 +1,43 @@
+        body { 
+            font-family: Arial;
+             padding: 20px; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 40px; 
+        }
+
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: center; 
+        }
+
+        th { 
+            background-color: #f04d2d; 
+            color: white; 
+        }
+
+        form { 
+            display: inline; 
+        }
+
+        input[type="text"], input[type="number"], textarea { 
+            width: 100%; 
+            padding: 8px; 
+        }
+
+        input[type="submit"], button { 
+            padding: 8px 16px; 
+            margin-top: 5px; 
+        }
+
+        .form-section { 
+            margin-top: 40px; 
+        }
+        
+        h2 { 
+            color: #f04d2d; 
+        }

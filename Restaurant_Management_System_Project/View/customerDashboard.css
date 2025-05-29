@@ -1,36 +1,55 @@
 body {
-    font-family: Arial, sans-serif;
-    background: hsl(0, 0%, 95%);
-    margin: 0;
-    padding: 0;
-  }
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, hsl(265, 72%, 50%), hsl(210, 90%, 60%));
+  margin: 0;
+  padding: 0;
+}
 
-  header {
-    background-color: hsl(122, 39%, 49%);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-  }
+.container {
+  padding: 50px 20px;
+  text-align: center;
+}
 
-  .dashboard-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 100px;
-  }
+header {
+  background-color: hsl(250, 60%, 25%);
+  color: white;
+  padding: 25px 0;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
 
-  .dashboard-buttons button {
-    padding: 15px 30px;
-    font-size: 16px;
-    border: none;
-    background-color: hsl(122, 39%, 55%);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+.dashboard-buttons {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
 
-  .dashboard-buttons button:hover {
-    background-color: hsl(123, 40%, 45%);
-  }
+.dashboard-buttons button {
+  background-color: white;
+  color: hsl(250, 60%, 25%);
+  border: 2px solid hsl(250, 60%, 40%);
+  padding: 20px 30px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  min-width: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.dashboard-buttons button span {
+  display: block;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.dashboard-buttons button:hover {
+  background-color: hsl(250, 60%, 40%);
+  color: white;
+  border-color: hsl(250, 60%, 40%);
+}

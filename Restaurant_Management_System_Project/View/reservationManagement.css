@@ -1,0 +1,50 @@
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #f04d2d;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .back-button {
+      text-decoration: none;
+      padding: 8px 16px;
+      background-color: #555;
+      color: white;
+      border-radius: 20px;
+    }
+    .back-button:hover {
+      background-color: #333;
+    }
+    .status-form {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+    }
+    .status-form select, .status-form button {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    .status-form button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .status-form button:hover {
+      background-color: #218838;
+    }
